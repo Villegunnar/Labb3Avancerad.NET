@@ -7,61 +7,69 @@ namespace Labb3Avancerad.NET
 {
     public class Tesla : Cars
     {
-        public int speed = 1000;
-
-
+        public Tesla()
+        {
+            this.Log = new List<string>();
+    
+        }
         public void racing()
         {
-
-            int actualSpeed = speed;
-            int displaySpeed = speed;
-            int time = 0;
-
-            for (int distans = 0; distans < 10000; distans++)
+            for (decimal Distans = 0.00m; Distans <= raceDistance; Distans++)
             {
-                Console.WriteLine("Time: " + time++ +" seconds");
-                Console.WriteLine("The Tesla has traveled: " + distans.ToString() + "km");
-
-                DateTime myTime = DateTime.Now;
-
-                Console.WriteLine(myTime);
-                
-
-
-                Random random3 = new Random();
-                int randomNumber = random3.Next(1, 5);
-                if (time == 30000)
+                if (Error1)
                 {
-
-
-                    if (randomNumber == 1)
-                    {
-                        SlutPåBensin();
-                    }
-                    if (randomNumber == 2)
-                    {
-                        Punktering();
-                    }
-                    if (randomNumber == 3)
-                    {
-                        FågelPåVindrutan();
-                    }
-                    if (randomNumber == 4)
-                    {
-                        if (Motorfel())
-                        {
-                            actualSpeed += 1;
-                            displaySpeed -= 1;
-                        }
-                    }
+                    Thread.Sleep(30000);
+                    Error1 = false;
+                }
+                if (Error2)
+                {
+                    Thread.Sleep(20000);
+                    Error2 = false;
+                }
+                if (Error3)
+                {
+                    Thread.Sleep(10000);
+                    Error3 = false;
                 }
 
-
-                Thread.Sleep(actualSpeed);
-                Console.WriteLine("sleep int = " + actualSpeed);
-                Console.WriteLine($"Current speed: " + displaySpeed);
+                Thread.Sleep(speed);
+                distance = Distans;
             }
+
+            winner = true;
+            
         }
+        public void CarError()
+        {
+            while (!winner)
+            {
+
+
+                Thread.Sleep(500);
+                Random random3 = new Random();
+                int randomNumber = random3.Next(1, 5);
+
+                if (randomNumber == 1)
+                {
+                    SlutPåBensin(Log);
+                }
+                if (randomNumber == 2)
+                {
+                    Punktering(Log);
+                }
+                if (randomNumber == 3)
+                {
+                    FågelPåVindrutan(Log);
+                }
+                if (randomNumber == 4)
+                {
+                    Motorfel(Log);
+                }
+            }
+            Log.Add(cartype + " gick i mål!");
+        }
+
+
 
     }
 }

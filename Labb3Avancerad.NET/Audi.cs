@@ -5,17 +5,19 @@ using System.Threading;
 
 namespace Labb3Avancerad.NET
 {
-    public class Ford : Cars
+    public class Audi : Cars
     {
+        
 
-        public Ford()
+
+        public Audi()
         {
             this.Log = new List<string>();
-           
+            this.cartype = "Audi";
+         
         }
         public void racing()
         {
-
             for (decimal Distans = 0.00m; Distans <= raceDistance; Distans++)
             {
                 if (Error1)
@@ -38,9 +40,7 @@ namespace Labb3Avancerad.NET
                 distance = Distans;
             }
 
-            
             winner = true;
-            
         }
         public void CarError()
         {
@@ -71,7 +71,6 @@ namespace Labb3Avancerad.NET
             }
             Log.Add(cartype + " gick i mål!");
         }
-
 
     }
 }
