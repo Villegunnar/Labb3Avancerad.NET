@@ -7,10 +7,11 @@ namespace Labb3Avancerad.NET
 {
     public class Tesla : Cars
     {
+        public static bool TeslaFinish = false;
         public Tesla()
         {
             this.Log = new List<string>();
-    
+            this.cartype = "Tesla";
         }
         public void racing()
         {
@@ -36,12 +37,12 @@ namespace Labb3Avancerad.NET
                 distance = Distans;
             }
 
-            winner = true;
+            TeslaFinish = true;
             
         }
         public void CarError()
         {
-            while (!winner)
+            while (!TeslaFinish)
             {
 
 

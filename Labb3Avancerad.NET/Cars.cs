@@ -65,19 +65,67 @@ namespace Labb3Avancerad.NET
 
         }
 
+        //public static void TheWinner(Tesla t, Ford f, Audi a)
+        //{
+        //    while (!Tesla.TeslaFinish && !Ford.FordFinish && !Audi.AudiFinish)
+        //    {
+
+        //        if (Tesla.TeslaFinish && !Ford.FordFinish && !Audi.AudiFinish)
+        //        {
+
+        //            t.Log.Add("Tesla came first!");
+        //        }
+        //        if (!Tesla.TeslaFinish && Ford.FordFinish && !Audi.AudiFinish)
+        //        {
+        //            f.Log.Add("Ford came first!");
+        //        }
+        //        if (!Tesla.TeslaFinish && !Ford.FordFinish && Audi.AudiFinish)
+        //        {
+        //            a.Log.Add("Audi came first!");
+        //        }
+        //    }
+        //}
  
         public static void PrintRace(Tesla t, Ford f, Audi a)
 
         {
 
-            while (!(t.winner && f.winner && a.winner))
+            while (!(Tesla.TeslaFinish && Ford.FordFinish && Audi.AudiFinish))
             {
+                Thread.Sleep(150);
+
+                if (!(Tesla.TeslaFinish || Ford.FordFinish || Audi.AudiFinish))
+                {
+
+
+                    if (Tesla.TeslaFinish && !Ford.FordFinish && !Audi.AudiFinish)
+                    {
+
+                        t.Log.Add("Tesla came first!");
+                    }
+                    if (!Tesla.TeslaFinish && Ford.FordFinish && !Audi.AudiFinish)
+                    {
+                        f.Log.Add("Ford came first!");
+                    }
+                    if (!Tesla.TeslaFinish && !Ford.FordFinish && Audi.AudiFinish)
+                    {
+                        a.Log.Add("Audi came first!");
+                    }
+
+                }
+
+
+
+
+
+
+
                 Console.Clear();
                 Console.WriteLine("        Teslan har åkt " + t.distance + " km  hastighet" + t.displaySpeed +
          "km/h                          Audin har åkt " + a.distance + " km  hastighet" + t.displaySpeed +
          "km/h                               Forden har åkt " + f.distance + " km  hastighet" + t.displaySpeed + " km/h \n");
 
-                if (t.Log.Count > 0)
+                if (t.Log.Count > 0 )
                 {
                     int i = 0;
                     foreach (string item in t.Log)
@@ -86,7 +134,7 @@ namespace Labb3Avancerad.NET
                         i++;
 
                         Console.SetCursorPosition(2, 2 + i);
-                        Console.WriteLine("Teslans Logg: " + item);
+                        Console.WriteLine(t.cartype+ " logg: " + item);
 
                     }
                 }
@@ -98,7 +146,7 @@ namespace Labb3Avancerad.NET
                     {
                         i++;
                         Console.SetCursorPosition(68, 2 + i);
-                        Console.WriteLine("Audins Logg: " + item);
+                        Console.WriteLine(a.cartype + " logg: " + item);
 
 
                     }
@@ -112,13 +160,25 @@ namespace Labb3Avancerad.NET
                     {
                         i++;
                         Console.SetCursorPosition(135, 2 + i);
-                        Console.WriteLine("Fordens Logg: " + item);
+                        Console.WriteLine(f.cartype + " logg: " + item);
 
 
                     }
                 }
 
-                Thread.Sleep(200);
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
             Console.SetCursorPosition(0, 25);
             Console.WriteLine("Racet är avslutat!");

@@ -7,15 +7,16 @@ namespace Labb3Avancerad.NET
 {
     public class Audi : Cars
     {
-        
+        public static bool AudiFinish = false;
 
 
         public Audi()
         {
             this.Log = new List<string>();
             this.cartype = "Audi";
+        
          
-        }
+        }   
         public void racing()
         {
             for (decimal Distans = 0.00m; Distans <= raceDistance; Distans++)
@@ -40,11 +41,11 @@ namespace Labb3Avancerad.NET
                 distance = Distans;
             }
 
-            winner = true;
+            AudiFinish = true;
         }
         public void CarError()
         {
-            while (!winner)
+            while (!AudiFinish)
             {
 
 
@@ -69,6 +70,7 @@ namespace Labb3Avancerad.NET
                     Motorfel(Log);
                 }
             }
+            AudiFinish = true;
             Log.Add(cartype + " gick i mål!");
         }
 

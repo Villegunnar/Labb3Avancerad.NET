@@ -7,11 +7,12 @@ namespace Labb3Avancerad.NET
 {
     public class Ford : Cars
     {
-
+        public static bool FordFinish = false;
         public Ford()
         {
             this.Log = new List<string>();
-           
+            this.cartype = "Ford";
+
         }
         public void racing()
         {
@@ -38,13 +39,13 @@ namespace Labb3Avancerad.NET
                 distance = Distans;
             }
 
-            
-            winner = true;
+
+            FordFinish = true;
             
         }
         public void CarError()
         {
-            while (!winner)
+            while (!FordFinish)
             {
 
 
@@ -69,6 +70,8 @@ namespace Labb3Avancerad.NET
                     Motorfel(Log);
                 }
             }
+
+            FordFinish = true;
             Log.Add(cartype + " gick i mål!");
         }
 

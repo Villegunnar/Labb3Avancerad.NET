@@ -7,13 +7,23 @@ namespace Labb3Avancerad.NET
     class Program
     {
 
+        static void rankPlacements()
+        {
+
+        
+
+
+
+
+        }
+
         static void Main(string[] args)
         {
             Console.SetWindowSize(195, 40);
             Tesla myTesla = new Tesla();
             Ford myFord = new Ford();
             Audi myAudi = new Audi();
-            Cars myCars = new Cars();
+      
 
 
             Thread thread1 = new Thread(myTesla.racing);
@@ -30,7 +40,9 @@ namespace Labb3Avancerad.NET
             thread4.Start();
             thread5.Start();
             thread6.Start();
+            
             Cars.PrintRace(myTesla, myFord, myAudi);
+            //Cars.TheWinner(myTesla, myFord, myAudi);
 
 
 
