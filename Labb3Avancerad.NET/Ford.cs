@@ -7,74 +7,48 @@ namespace Labb3Avancerad.NET
 {
     public class Ford : Cars
     {
+
         public static bool FordFinish = false;
+
         public Ford()
         {
             this.Log = new List<string>();
             this.cartype = "Ford";
-
+         
         }
+        
         public void racing()
         {
-
             for (decimal Distans = 0.00m; Distans <= raceDistance; Distans++)
             {
-                if (Error1)
+                if (emptyTank)
                 {
                     Thread.Sleep(30000);
-                    Error1 = false;
+                    emptyTank = false;
                 }
-                if (Error2)
+                if (tireChange)
                 {
                     Thread.Sleep(20000);
-                    Error2 = false;
+                    tireChange = false;
                 }
-                if (Error3)
+                if (windshieldWash)
                 {
                     Thread.Sleep(10000);
-                    Error3 = false;
+                    windshieldWash = false;
                 }
-
                 Thread.Sleep(speed);
                 distance = Distans;
             }
-
-
             FordFinish = true;
-            
-        }
-        public void CarError()
-        {
-            while (!FordFinish)
+            if (!Tesla.TeslaFinish && !Audi.AudiFinish)
             {
-
-
-                Thread.Sleep(500);
-                Random random3 = new Random();
-                int randomNumber = random3.Next(1, 5);
-
-                if (randomNumber == 1)
-                {
-                    SlutPåBensin(Log);
-                }
-                if (randomNumber == 2)
-                {
-                    Punktering(Log);
-                }
-                if (randomNumber == 3)
-                {
-                    FågelPåVindrutan(Log);
-                }
-                if (randomNumber == 4)
-                {
-                    Motorfel(Log);
-                }
+                Log.Add(cartype + " Vann!");
             }
-
-            FordFinish = true;
-            Log.Add(cartype + " gick i mål!");
+            else
+            {
+                Log.Add(cartype + " Gick i mål!");
+            }
         }
-
-
+        
     }
 }
