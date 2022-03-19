@@ -8,7 +8,7 @@ namespace Labb3Avancerad.NET
     {
         static void Main(string[] args)
         {
-            Cars.runProgram();
+            Methods.runProgram();
             
             
         }

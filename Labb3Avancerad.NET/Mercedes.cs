@@ -5,18 +5,17 @@ using System.Threading;
 
 namespace Labb3Avancerad.NET
 {
-    public class Ford : Cars
+    public class Mercedes : Cars
     {
-
-        public static bool FordFinish = false;
-
-        public Ford()
+        public static bool MercedesFinish = false;
+        public Mercedes()
         {
             this.Log = new List<string>();
-            this.cartype = "Ford";
-         
+            this.cartype = "Mercedes";
+
+
         }
-        
+
         public void racing()
         {
             for (decimal Distans = 0.00m; Distans <= raceDistance; Distans++)
@@ -38,9 +37,10 @@ namespace Labb3Avancerad.NET
                 }
                 Thread.Sleep(speed);
                 distance = Distans;
+
             }
-            FordFinish = true;
-            if (!Tesla.TeslaFinish && !Audi.AudiFinish && !Mercedes.MercedesFinish)
+            MercedesFinish = true;
+            if (!Ford.FordFinish && !Tesla.TeslaFinish && !Audi.AudiFinish)
             {
                 Log.Add(cartype + " Vann!");
             }
@@ -49,6 +49,8 @@ namespace Labb3Avancerad.NET
                 Log.Add(cartype + " Gick i mål!");
             }
         }
-        
+
+
+
     }
 }

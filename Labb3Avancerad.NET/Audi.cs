@@ -40,7 +40,7 @@ namespace Labb3Avancerad.NET
 
             }
             AudiFinish = true;
-            if (!Ford.FordFinish && !Tesla.TeslaFinish)
+            if (!Ford.FordFinish && !Tesla.TeslaFinish && !Mercedes.MercedesFinish)
             {
                 Log.Add(cartype + " Vann!");
             }
