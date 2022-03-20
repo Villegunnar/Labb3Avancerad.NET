@@ -27,7 +27,7 @@ namespace Labb3Avancerad.NET
             {
 
                 emptyTank = true;
-                c.Log.Add("Bensinen tog slut, bilen tankar i 30 sekunder");
+                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Bensinen tog slut, bilen tankar i 30 sekunder");
                 speed1 = c.displaySpeed;
                 c.displaySpeed = 0;
                 Thread.Sleep(30000);
@@ -41,7 +41,7 @@ namespace Labb3Avancerad.NET
             if (random1.Next(1, 26) == 25)
             {
                 tireChange = true;
-                c.Log.Add("Behöver byta däck, stannar 20 sekunder");
+                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Behöver byta däck, stannar 20 sekunder");
                 speed2 = c.displaySpeed;
                 c.displaySpeed = 0;
                 Thread.Sleep(20000);
@@ -56,7 +56,7 @@ namespace Labb3Avancerad.NET
             if (random1.Next(1, 11) == 5)
             {
                 windshieldWash = true;
-                c.Log.Add("Behöver tvätta vindrutan, stannar 10 sekunder");
+                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Behöver tvätta vindrutan, stannar 10 sekunder");
                 speed3 = c.displaySpeed;
                 c.displaySpeed = 0;
                 Thread.Sleep(10000);
@@ -68,7 +68,7 @@ namespace Labb3Avancerad.NET
             Random random1 = new Random();
             if (random1.Next(1, 6) == 5)
             {
-                c.Log.Add("Hastigheten på bilen sänks med 1km/h");
+                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Hastigheten på bilen sänks med 1km/h");
                 c.speed = c.speed + 1;
                 c.displaySpeed = c.displaySpeed - 1;
             }

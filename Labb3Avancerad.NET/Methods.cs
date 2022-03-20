@@ -41,11 +41,14 @@ namespace Labb3Avancerad.NET
             Console.SetWindowSize(60, 10);
 
             Console.Write("Välkommen till kampen mellan ");
-            colourWriteLine("Testla ", "Audi ", "Ford ", "Mercedes", " \n\nVilken bil går i mål först!?\n\n" +
+            colourWriteLine("Testla ", "Audi ", "Ford ", "Mercedes", " \n\nVilken bil går i mål först?\n\n" +
+
+
                             "1.     * PressEnterMode *\n" +
                             "2.     * ConstantUpdateMode * \n\n" +
                             "Skriv ditt alternativ och tryck enter: ");
 
+            
 
         }
         public static bool GameMode()
@@ -82,9 +85,15 @@ namespace Labb3Avancerad.NET
                     int i = 0;
                     foreach (string item in t.Log)
                     {
+               
                         i++;
-                        Console.SetCursorPosition(3, 2 + i);
+                        Console.SetCursorPosition(1, 2 + i);
                         colourWriteLine(item);
+                  
+                    }
+                    if (slowMode)
+                    {
+                        t.Log.Clear();
                     }
                 }
                 if (a.Log.Count > 0)
@@ -93,9 +102,15 @@ namespace Labb3Avancerad.NET
                     foreach (string item in a.Log)
                     {
                         i++;
-                        Console.SetCursorPosition(54, 2 + i);
+                        Console.SetCursorPosition(53, 2 + i);
                         colourWriteLine("",item,"");
+                       
                     }
+                    if (slowMode)
+                    {
+                        a.Log.Clear();
+                    }
+
                 }
                 if (f.Log.Count > 0)
                 {
@@ -103,11 +118,16 @@ namespace Labb3Avancerad.NET
                     foreach (string item in f.Log)
                     {
                         i++;
-                        Console.SetCursorPosition(107, 2 + i);
+                        Console.SetCursorPosition(105, 2 + i);
                         colourWriteLine("", "",item);
+                        
+                    }
+                    if (slowMode)
+                    {
+                        f.Log.Clear();
                     }
                 }
-                if (f.Log.Count > 0)
+                if (m.Log.Count > 0)
                 {
                     int i = 0;
                     foreach (string item in m.Log)
@@ -115,6 +135,11 @@ namespace Labb3Avancerad.NET
                         i++;
                         Console.SetCursorPosition(158, 2 + i);
                         colourWriteLine("", "", "",item);
+                        
+                    }
+                    if (slowMode)
+                    {
+                        m.Log.Clear();
                     }
                 }
 
