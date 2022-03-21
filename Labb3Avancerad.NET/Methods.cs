@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Labb3Avancerad.NET
 {
     public class Methods
     {
+        //RunProgram method containing StartMenu(), all class objects and all the theads.
         public static void runProgram()
         {
             StartMenu();
- 
             Tesla myTesla = new Tesla();
             Ford myFord = new Ford();
             Audi myAudi = new Audi();
@@ -34,68 +32,70 @@ namespace Labb3Avancerad.NET
             thread8.Start();
 
             Thread printRace = new Thread(() => Methods.PrintRace(myTesla, myFord, myAudi, myMercedes, GameMode()));
+           
+
             printRace.Start();
         }
+
+        //Containing menu text
         public static void StartMenu()
         {
             Console.SetWindowSize(60, 10);
 
             Console.Write("Välkommen till kampen mellan ");
-            colourWriteLine("Testla ", "Audi ", "Ford ", "Mercedes", " \n\nVilken bil går i mål först?\n\n" +
+            colourWrite("Testla ", "Audi ", "Ford ", "Mercedes", " \n\nVilken bil går i mål först?\n\n" +
 
 
                             "1.     * PressEnterMode *\n" +
-                            "2.     * ConstantUpdateMode * \n\n" +
+                            "2.     * RapidMode * \n\n" +
                             "Skriv ditt alternativ och tryck enter: ");
-
-            
-
         }
+
+        //Whether true or false, deciding which game mode to run
         public static bool GameMode()
         {
-
             bool raceMode = false;
             raceMode = Console.ReadLine() == "1";
 
             Console.SetWindowSize(210, 40);
             return raceMode;
         }
-        public static void PrintRace(Cars t, Cars f, Cars a,Cars m, bool slowMode)
+
+        //PrintRace method prints all the stats and logs to respective car
+        public static void PrintRace(Cars t, Cars f, Cars a, Cars m, bool slowMode)
         {
             Console.Clear();
             Console.WriteLine("\n\n\nThe race has begun!!!");
             Thread.Sleep(1500);
 
-            while (!(Tesla.TeslaFinish && Ford.FordFinish && Audi.AudiFinish))
+            while (!(Tesla.TeslaFinish && Ford.FordFinish && Audi.AudiFinish && Mercedes.MercedesFinish))
             {
                 if (slowMode)
                 {
-
                     Console.WriteLine("\n\nPress any key to see current status");
                     Console.ReadLine();
                 }
-
                 Thread.Sleep(150);
 
                 Console.Clear();
-                colourWriteLine("      Teslan har åkt " + t.distance + " km  hastighet:" + t.displaySpeed + "km/h         ", "Audin har åkt " + a.distance + " km  hastighet:" + a.displaySpeed +"km/h"    , "         Forden har åkt " + f.distance + " km  hastighet:" + f.displaySpeed + " km/h " , "        Mercedes har åkt " + m.distance + " km  hastighet:" + m.displaySpeed + " km/h \n");
+                colourWrite("      Teslan har åkt " + t.distance + " km  hastighet:" + t.displaySpeed + "km/h         ", "Audin har åkt " + a.distance + " km  hastighet:" + a.displaySpeed + "km/h", "         Forden har åkt " + f.distance + " km  hastighet:" + f.displaySpeed + " km/h ", "        Mercedes har åkt " + m.distance + " km  hastighet:" + m.displaySpeed + " km/h \n");
 
+                //Printing Tesla log
                 if (t.Log.Count > 0)
                 {
                     int i = 0;
                     foreach (string item in t.Log)
                     {
-               
                         i++;
                         Console.SetCursorPosition(1, 2 + i);
-                        colourWriteLine(item);
-                  
+                        colourWrite(item);
                     }
                     if (slowMode)
                     {
                         t.Log.Clear();
                     }
                 }
+                //Printing Audi log
                 if (a.Log.Count > 0)
                 {
                     int i = 0;
@@ -103,15 +103,14 @@ namespace Labb3Avancerad.NET
                     {
                         i++;
                         Console.SetCursorPosition(53, 2 + i);
-                        colourWriteLine("",item,"");
-                       
+                        colourWrite("", item, "");
                     }
                     if (slowMode)
                     {
                         a.Log.Clear();
                     }
-
                 }
+                //Printing Ford log
                 if (f.Log.Count > 0)
                 {
                     int i = 0;
@@ -119,14 +118,14 @@ namespace Labb3Avancerad.NET
                     {
                         i++;
                         Console.SetCursorPosition(105, 2 + i);
-                        colourWriteLine("", "",item);
-                        
+                        colourWrite("", "", item);
                     }
                     if (slowMode)
                     {
                         f.Log.Clear();
                     }
                 }
+                //Printing Mercedes log
                 if (m.Log.Count > 0)
                 {
                     int i = 0;
@@ -134,28 +133,22 @@ namespace Labb3Avancerad.NET
                     {
                         i++;
                         Console.SetCursorPosition(158, 2 + i);
-                        colourWriteLine("", "", "",item);
-                        
+                        colourWrite("", "", "", item);
                     }
                     if (slowMode)
                     {
                         m.Log.Clear();
                     }
                 }
-
-
             }
-
             Console.SetCursorPosition(0, 25);
             Console.WriteLine("Racet är avslutat!");
             Console.ReadLine();
         }
 
-        public static void colourWriteLine(string text1 ="", string text2 ="" , string text3 ="", string text4 = "", string text5 = "")
+        //Method for making the program look beautiful
+        public static void colourWrite(string text1 = "", string text2 = "", string text3 = "", string text4 = "", string text5 = "")
         {
-
-            
-
             Console.ForegroundColor = (ConsoleColor)10;
             Console.Write(text1);
 
@@ -174,9 +167,9 @@ namespace Labb3Avancerad.NET
 
 
         }
-        
 
 
-  
+
+
     }
 }

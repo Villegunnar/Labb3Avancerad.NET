@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Labb3Avancerad.NET
 {
+    //Cars class containing properties that are inherted by Adui,Ford,Mercedes and Tesla class.
     public class Cars
     {
-
-        public bool Finish = false;
+        //public bool Finish = false;
         public int speed = 60;
         public int displaySpeed = 60;
         public decimal distance = 0.00m;
@@ -16,67 +15,84 @@ namespace Labb3Avancerad.NET
         protected bool tireChange = false;
         protected bool windshieldWash = false;
         public string cartype;
-        public static int raceDistance = 10000;
+        public static int raceDistance = 500;
         public List<string> Log { get; set; }
 
-        public void SlutPåBensin(Cars c)
+
+
+        //The 4 events that may happen in the race to each car.
+        public void OutOfGas(Cars c)
         {
             int speed1;
             Random random1 = new Random();
             if (random1.Next(1, 51) == 40)
             {
 
-                emptyTank = true;
-                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Bensinen tog slut, bilen tankar i 30 sekunder");
-                speed1 = c.displaySpeed;
-                c.displaySpeed = 0;
-                Thread.Sleep(30000);
-                c.displaySpeed = speed1;
+                
+              
+                    emptyTank = true;
+                    c.Log.Add($"{DateTime.Now.ToShortTimeString()} Bensinen tog slut, bilen tankar i 30 sekunder");
+                    speed1 = c.displaySpeed;
+                    c.displaySpeed = 0;
+                    Thread.Sleep(30000);
+                    c.displaySpeed = speed1;
+               
+                
             }
         }
-        public void Punktering(Cars c)
+        public void FlatTire(Cars c)
         {
             int speed2;
             Random random1 = new Random();
             if (random1.Next(1, 26) == 25)
             {
-                tireChange = true;
-                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Behöver byta däck, stannar 20 sekunder");
-                speed2 = c.displaySpeed;
-                c.displaySpeed = 0;
-                Thread.Sleep(20000);
-                c.displaySpeed = speed2;
+               
+                    tireChange = true;
+                    c.Log.Add($"{DateTime.Now.ToShortTimeString()} Behöver byta däck, stannar 20 sekunder");
+                    speed2 = c.displaySpeed;
+                    c.displaySpeed = 0;
+                    Thread.Sleep(20000);
+                    c.displaySpeed = speed2;
+               
+               
 
             }
         }
-        public void FågelPåVindrutan(Cars c)
+        public void BirdOnWindShield(Cars c)
         {
             int speed3;
             Random random1 = new Random();
             if (random1.Next(1, 11) == 5)
             {
-                windshieldWash = true;
-                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Behöver tvätta vindrutan, stannar 10 sekunder");
-                speed3 = c.displaySpeed;
-                c.displaySpeed = 0;
-                Thread.Sleep(10000);
-                c.displaySpeed = speed3;
+                
+                    windshieldWash = true;
+                    c.Log.Add($"{DateTime.Now.ToShortTimeString()} Behöver tvätta vindrutan, stannar 10 sekunder");
+                    speed3 = c.displaySpeed;
+                    c.displaySpeed = 0;
+                    Thread.Sleep(10000);
+                    c.displaySpeed = speed3;
+                
             }
         }
-        public void Motorfel(Cars c)
+        public void EngineFailure(Cars c)
         {
-            Random random1 = new Random();
-            if (random1.Next(1, 6) == 5)
-            {
-                c.Log.Add($"{DateTime.Now.ToShortTimeString()} Hastigheten på bilen sänks med 1km/h");
-                c.speed = c.speed + 1;
-                c.displaySpeed = c.displaySpeed - 1;
-            }
+           
+                Random random1 = new Random();
+                if (random1.Next(1, 6) == 5)
+                {
+                    c.Log.Add($"{DateTime.Now.ToShortTimeString()} Hastigheten på bilen sänks med 1km/h");
+                    c.speed = c.speed + 1;
+                    c.displaySpeed = c.displaySpeed - 1;
+                }
+            
         }
-        
+
+
+        // A method with a thread.Sleep for setting the time to which a while loop
+        // goes through the events which then by chance may execute.
         public void CarError(Cars c)
         {
-            while (!c.Finish)
+            while (!(Tesla.TeslaFinish && Ford.FordFinish && Audi.AudiFinish && Mercedes.MercedesFinish))
             {
                 Thread.Sleep(1000);
                 Random random3 = new Random();
@@ -84,19 +100,19 @@ namespace Labb3Avancerad.NET
 
                 if (randomNumber == 1)
                 {
-                    SlutPåBensin(c);
+                    OutOfGas(c);
                 }
                 if (randomNumber == 2)
                 {
-                    Punktering(c);
+                    FlatTire(c);
                 }
                 if (randomNumber == 3)
                 {
-                    FågelPåVindrutan(c);
+                    BirdOnWindShield(c);
                 }
                 if (randomNumber == 4)
                 {
-                    Motorfel(c);
+                    EngineFailure(c);
                 }
             }
         }

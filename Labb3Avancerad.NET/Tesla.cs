@@ -8,14 +8,13 @@ namespace Labb3Avancerad.NET
     public class Tesla : Cars
     {
         public static bool TeslaFinish = false;
-
         public Tesla()
         {
-            this.Log = new List<string>();
+            this.Log = new List<string>();       
             this.cartype = "Tesla";
-        
         }
 
+        //The racing loop for Audi, when finnished looping adds winning result to the log.
         public void racing()
         {
             for (decimal Distans = 0.00m; Distans <= raceDistance; Distans++)
@@ -41,15 +40,19 @@ namespace Labb3Avancerad.NET
             }
 
             TeslaFinish = true;
+            
             if (!Ford.FordFinish && !Audi.AudiFinish && !Mercedes.MercedesFinish)
             {
-                Log.Add(cartype + " Vann!");
+
+                Log.Add($"{DateTime.Now.ToShortTimeString()} " + cartype + " Vann!");
             }
             else
             {
-                Log.Add(cartype + " Gick i mål!");
+                Log.Add($"{DateTime.Now.ToShortTimeString()} " + cartype + " Gick i mål!");
             }
         }
+
+
 
     }
 }

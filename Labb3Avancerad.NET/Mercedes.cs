@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Labb3Avancerad.NET
@@ -12,10 +11,9 @@ namespace Labb3Avancerad.NET
         {
             this.Log = new List<string>();
             this.cartype = "Mercedes";
-
-
         }
 
+        //The racing loop for Mercedes, when finnished looping adds winning result to the log.
         public void racing()
         {
             for (decimal Distans = 0.00m; Distans <= raceDistance; Distans++)
@@ -42,15 +40,12 @@ namespace Labb3Avancerad.NET
             MercedesFinish = true;
             if (!Ford.FordFinish && !Tesla.TeslaFinish && !Audi.AudiFinish)
             {
-                Log.Add(cartype + " Vann!");
+                Log.Add($"{DateTime.Now.ToShortTimeString()} " + cartype + " Vann!");
             }
             else
             {
-                Log.Add(cartype + " Gick i mål!");
+                Log.Add($"{DateTime.Now.ToShortTimeString()} " + cartype + " Gick i mål!");
             }
         }
-
-
-
     }
 }
